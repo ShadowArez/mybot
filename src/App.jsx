@@ -80,7 +80,7 @@ const App = () => {
         </div>
         <div className="buttons">
           <input type="submit" value="پاشگەزبوونەوە"/>
-          <input type="text" className='confirm' onClick={onConfirm} value="دووپاتكردنەوە"/>
+          <input type="submit" className='confirm' onClick={onConfirm} value="دووپاتكردنەوە"/>
         </div>
       </div>
     </div>
