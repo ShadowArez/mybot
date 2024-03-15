@@ -24,7 +24,7 @@ const App = () => {
   };
 
   const onConfirm = () => {
-    telegram.MainButton.text = totalValue; // Change "done" to totalValue
+    telegram.MainButton.text = `پارەدان${totalValue}`; // Change "done" to totalValue
     telegram.MainButton.show();
   };
 
