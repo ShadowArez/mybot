@@ -13,7 +13,7 @@ const App = () => {
   });
   const onConfirm = () => {
     telegram.MainButton.text = "done";
-    telegram.MainButton.Show();
+    telegram.MainButton.show();
   };
   
   const [usdtValue, setUsdtValue] = useState('');
