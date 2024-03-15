@@ -1,5 +1,5 @@
 import './App.css'
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import {getData} from './constants/db'
 import usdt_img from './assets/img/logo.png';
@@ -15,6 +15,7 @@ const App = () => {
     telegram.MainButton.text = "done";
     telegram.MainButton.Show();
   };
+  
   const [usdtValue, setUsdtValue] = useState('');
   const [totalValue, setTotalValue] = useState('');
 
@@ -30,6 +31,15 @@ const App = () => {
     });
     setTotalValue(formattedValue); // Update the formatted total value
   };
+  const onSendData = useCallback(() => {
+    telegram.sendData(totalValue)
+  },totalValue)
+
+  useEffect(() => {
+    telegram.onEvent('mainButtonClicked',totalValue)
+
+    return () => telegram.offEvent('mainButtonClicked',totalValue)
+  },totalValue)
   return (
     <>
     <div className="main">
@@ -80,7 +90,7 @@ const App = () => {
         </div>
         <div className="buttons">
           <input type="submit" value="پاشگەزبوونەوە"/>
-          <input type="text" className='confirm' onClick={onConfirm} value="دووپاتكردنەوە"/>
+          <input type="submit" className='confirm' onClick={onConfirm} value="دووپاتكردنەوە"/>
         </div>
       </div>
     </div>
