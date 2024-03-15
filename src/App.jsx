@@ -29,7 +29,11 @@ const App = () => {
   };
 
   const onSendData = useCallback(() => {
-    telegram.sendData(totalValue, usdtValue);
+    const dataToSend = {
+      totalValue: totalValue,
+      usdtValue: usdtValue
+    };
+    telegram.sendData(JSON.stringify(dataToSend));
 }, [totalValue, usdtValue]);
 
 
