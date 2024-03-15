@@ -36,10 +36,10 @@ const App = () => {
   },totalValue)
 
   useEffect(() => {
-    telegram.onEvent('mainButtonClicked',totalValue)
+    telegram.onEvent('mainButtonClicked',onSendData)
 
-    return () => telegram.offEvent('mainButtonClicked',totalValue)
-  },totalValue)
+    return () => telegram.offEvent('mainButtonClicked',onSendData)
+  },onSendData)
   return (
     <>
     <div className="main">
