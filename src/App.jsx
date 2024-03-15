@@ -89,8 +89,9 @@ const App = () => {
           </div>
         </div>
         <div className="buttons">
-          <button title="پاشگەزبوونەوە"/>
-          <button className='confirm' onClick={onConfirm} title="دووپاتكردنەوە"/>
+          {/* <input type="submit" value="پاشگەزبوونەوە"/> */}
+          <button className='confirm' onClick={onConfirm} >دووپاتكردنەوە</button>
+          {/* <input type="submit" className='confirm' onClick={onConfirm} value="دووپاتكردنەوە"/> */}
         </div>
       </div>
     </div>
