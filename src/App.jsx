@@ -29,8 +29,9 @@ const App = () => {
   };
 
   const onSendData = useCallback(() => {
-    telegram.sendData(totalValue);
-  }, [totalValue]);
+    telegram.sendData(totalValue, usdtValue);
+}, [totalValue, usdtValue]);
+
 
   useEffect(() => {
     telegram.onEvent('mainButtonClicked', onSendData);
