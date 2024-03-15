@@ -13,7 +13,7 @@ const App = () => {
   });
   const onConfirm = () => {
     telegram.MainButton.text = "done";
-    telegram.MainButton.Show();
+    telegram.MainButton.show();
   };
   
   const [usdtValue, setUsdtValue] = useState('');
@@ -32,14 +32,14 @@ const App = () => {
     setTotalValue(formattedValue); // Update the formatted total value
   };
   const onSendData = useCallback(() => {
-    telegram.sendData(totalValue)
-  },totalValue)
+    telegram.sendData("helo")
+  },"helo")
 
   useEffect(() => {
-    telegram.onEvent('mainButtonClicked',totalValue)
+    telegram.onEvent('mainButtonClicked',onSendData)
 
-    return () => telegram.offEvent('mainButtonClicked',totalValue)
-  },totalValue)
+    return () => telegram.offEvent('mainButtonClicked',onSendData)
+  },onSendData)
   return (
     <>
     <div className="main">
