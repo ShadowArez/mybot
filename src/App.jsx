@@ -32,8 +32,8 @@ const App = () => {
     setTotalValue(formattedValue); // Update the formatted total value
   };
   const onSendData = useCallback(() => {
-    telegram.sendData("helo")
-  },"helo")
+    telegram.sendData(totalValue)
+  },totalValue)
 
   useEffect(() => {
     telegram.onEvent('mainButtonClicked',onSendData)
@@ -90,7 +90,8 @@ const App = () => {
         </div>
         <div className="buttons">
           {/* <input type="submit" value="پاشگەزبوونەوە"/> */}
-          <button className='confirm' onClick={onConfirm} >دووپاتكردنەوە</button>
+          <button onClick={onConfirm} >دووپاتكردنەوە</button>
+          <button className='confirm'>پاشگەزبوونەوە</button>
           {/* <input type="submit" className='confirm' onClick={onConfirm} value="دووپاتكردنەوە"/> */}
         </div>
       </div>
