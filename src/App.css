@@ -110,7 +110,7 @@
     justify-content: space-around;
 }
 .main .card .buttons button{
-    text-direction:None;
+    text-decoration:None;
     width: 150px;
     height: 70px;
     border-radius: 20px;
