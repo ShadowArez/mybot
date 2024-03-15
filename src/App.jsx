@@ -8,38 +8,42 @@ import wallet_img from './assets/img/wallet.png';
 const telegram = window.Telegram.WebApp;
 const items = getData()
 const App = () => {
-  useEffect(()=>{
-    telegram.ready();
-  });
-  const onConfirm = () => {
-    telegram.MainButton.text = "done";
-    telegram.MainButton.show();
-  };
-  
   const [usdtValue, setUsdtValue] = useState('');
   const [totalValue, setTotalValue] = useState('');
 
   const handleInputChange = (e) => {
     const { value } = e.target;
-    setUsdtValue(value); // Update the input value
+    setUsdtValue(value);
 
-    // Multiply the input value by 1300 and format it with commas and two decimal places
     const newValue = parseFloat(value) * 1300 || 0;
     const formattedValue = newValue.toLocaleString('en-US', {
       minimumFractionDigits: 0,
       maximumFractionDigits: 2,
     });
-    setTotalValue(formattedValue); // Update the formatted total value
+    setTotalValue(formattedValue);
   };
+
+  const onConfirm = () => {
+    telegram.MainButton.text = totalValue; // Change "done" to totalValue
+    telegram.MainButton.show();
+  };
+
   const onSendData = useCallback(() => {
-    telegram.sendData(totalValue)
-  },totalValue)
+    telegram.sendData(totalValue);
+  }, [totalValue]);
 
   useEffect(() => {
-    telegram.onEvent('mainButtonClicked',onSendData)
+    telegram.onEvent('mainButtonClicked', onSendData);
+    return () => telegram.offEvent('mainButtonClicked', onSendData);
+  }, [onSendData]);
 
-    return () => telegram.offEvent('mainButtonClicked',onSendData)
-  },onSendData)
+  useEffect(() => {
+    telegram.ready();
+  });
+
+  const onCloseWebApp = () => {
+    telegram.close();
+  };
   return (
     <>
     <div className="main">
@@ -91,7 +95,7 @@ const App = () => {
         <div className="buttons">
           {/* <input type="submit" value="پاشگەزبوونەوە"/> */}
           <button onClick={onConfirm} className='confirm' >دووپاتكردنەوە</button>
-          <button>پاشگەزبوونەوە</button>
+          <button onClick={onCloseWebApp}>پاشگەزبوونەوە</button>
           {/* <input type="submit" className='confirm' onClick={onConfirm} value="دووپاتكردنەوە"/> */}
         </div>
       </div>
