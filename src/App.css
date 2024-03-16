@@ -94,7 +94,9 @@
     justify-content: end;
     color: #D4D4D4;
     font-family: Rudaw;
-
+}
+.main .container .cards .card .input input:last-child::placeholder{
+    color: white;
 }
 .main .container .cards .card .img{
     height: 40px;
